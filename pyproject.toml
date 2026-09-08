@@ -38,6 +38,9 @@ dev = [
 package = true
 exclude-newer = "1 week"
 
+[tool.uv.audit]
+malware-check = true
+
 [tool.setuptools.package-data]
 cinema = ["web/static/*"]
 
@@ -87,3 +90,9 @@ disable = [
 
 [tool.pylint.similarities]
 min-similarity-lines = 12
+
+[tool.bandit]
+targets = ["."]
+exclude_dirs = ["tests", "venv", ".venv", "build", "dist"]
+skips = ["B101", "B104"]    # Skips assert warnings, and bind to 0.0.0.0
+sev_level = "MEDIUM"        # Or "LOW" if you want to track smaller issues
